@@ -1,0 +1,1 @@
+{!! $htmlResponse !!}
