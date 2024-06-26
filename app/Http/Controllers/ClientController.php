@@ -69,8 +69,9 @@ class ClientController extends Controller
             if ($validator->fails()) {
                 throw new ValidationException($validator);
             }
-
+          
             $input = $request->all();
+        
             if (Auth::guard('client')->attempt(['username' => $input['username'], 'password' => $input['password']]) && Auth::guard('client')->user()->status == 1) {
                 // Check if the role_id is not in [1, 2, 3, 4]
                 $notallowedRoles = [1, 2, 3, 4];

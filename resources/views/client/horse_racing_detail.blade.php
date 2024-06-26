@@ -19,7 +19,13 @@
         <div class="row">
           <div class="col-xl-8 px-lg-1">
    <?php if ($_SERVER['HTTP_USER_AGENT'] && strpos($_SERVER['HTTP_USER_AGENT'], 'Mobile') !== false) { ?>
-              <app-bet-slip class="show_bet mb-4">
+    <?php if (!empty($game_single['channel_id'])) { ?>
+                                <div class="betting-table lay-bt" style="position: relative;">
+                                    <p class="mrkname" id="liveMatchLink"> Live Match </p>
+                                </div>
+                                <div id="liveTvMatch"><iframe src="{{$game_single['channel_id'] ?? ''}}" height="200" width="300" title="Iframe Example"></iframe></div>
+                            <?php } ?>        
+    <app-bet-slip class="show_bet mb-4">
                 <form action="{{route('cricket-bet-place')}}" method="POST">
                   @csrf
                   <div class="betting-table lay-bt" style="position: relative;">
@@ -111,6 +117,12 @@
  <?php if ($_SERVER['HTTP_USER_AGENT'] && strpos($_SERVER['HTTP_USER_AGENT'], 'Mobile') !== false) { ?>
           <div class="col-xl-4">
             <div class="openBets">
+            <?php if (!empty($game_single['channel_id'])) { ?>
+                                <div class="betting-table lay-bt" style="position: relative;">
+                                    <p class="mrkname" id="liveMatchLink"> Live Match </p>
+                                </div>
+                                <div id="liveTvMatch"><iframe src="{{$game_single['channel_id'] ?? ''}}" height="200" width="300" title="Iframe Example"></iframe></div>
+                            <?php } ?>
               <div id="collapseSetting" class="collapse"><app-stakes>
                   <div style="position: relative;">
                     <div class="stakeDiv">

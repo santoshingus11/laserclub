@@ -5,6 +5,23 @@
 
     /* Style Goes Here */
 </style>
+<style>
+    .liveTvMatch {
+        width: 100%;
+        height: 400px;
+        border: 1px solid black;
+        /* Adjust the height as needed */
+        /* position: relative; */
+    }
+
+    iframe {
+        width: 100% !important;
+        ;
+        height: 100% !important;
+        ;
+        border: none;
+    }
+</style>
 @endsection
 @section('content')
 
@@ -12,14 +29,23 @@
 <?php if ($_SERVER['HTTP_USER_AGENT'] && strpos($_SERVER['HTTP_USER_AGENT'], 'Mobile') !== false) { ?>
     @include('layouts.web.mobile_header')
 <?php } ?>
+
 <div class="content-page">
     <div class="content">
-        <div class="container-fluid"><router-outlet></router-outlet>
+        <div class="container-fluid">
+            <router-outlet></router-outlet>
             <app-sport-list>
                 <div class="row">
                     <div class="col-xl-8 px-lg-1">
 
                         <?php if ($_SERVER['HTTP_USER_AGENT'] && strpos($_SERVER['HTTP_USER_AGENT'], 'Mobile') !== false) { ?>
+                            <!-- Mobile -->
+                            <?php if (!empty($game_single['channel_id'])) { ?>
+                                <div class="betting-table lay-bt" style="position: relative;">
+                                    <p class="mrkname" id="liveMatchLink"> Live Match </p>
+                                </div>
+                                <div id="liveTvMatch"><iframe src="{{$game_single['channel_id'] ?? ''}}" height="200" width="300" title="Iframe Example"></iframe></div>
+                            <?php } ?>
                             <app-bet-slip class="show_bet mb-4">
                                 <form action="{{route('cricket-bet-place')}}" method="POST">
                                     @csrf
@@ -143,7 +169,7 @@
 
                                 </div>
                             </div><!----><!---->
-                           
+
                             <div>
                                 <div class="dScreen book_makers">
                                     <div class="row mx-0 head_bg">
@@ -184,7 +210,7 @@
 
                                 </div>
                             </div><!----><!---->
-                          
+
                             <div>
                                 <div class="dScreen book_makers">
                                     <div class="row mx-0 head_bg">
@@ -225,12 +251,12 @@
 
                                 </div>
                             </div><!----><!---->
-                          
+
                             <div>
                                 <div class="dScreen book_makers">
                                     <div class="row mx-0 head_bg">
                                         <div class="col-md-12 col-8 px-0">
-                                            <p class="match-odds"> Over by Over Session Market  <a href="javascript:void(0)"><i class="mdi mdi-information-outline"></i></a></p>
+                                            <p class="match-odds"> Over by Over Session Market <a href="javascript:void(0)"><i class="mdi mdi-information-outline"></i></a></p>
                                         </div>
                                         <div class="col-md-6 col-4 text-end px-0"><span class="matched-count">Matched <strong></strong></span></div>
                                     </div>
@@ -266,7 +292,7 @@
 
                                 </div>
                             </div><!----><!---->
-                       
+
                             <div>
                                 <div class="dScreen book_makers">
                                     <div class="row mx-0 head_bg">
@@ -307,7 +333,7 @@
 
                                 </div>
                             </div><!----><!---->
-                            
+
                             <div>
                                 <div class="dScreen book_makers">
                                     <div class="row mx-0 head_bg">
@@ -356,7 +382,15 @@
 
                     <?php if ($_SERVER['HTTP_USER_AGENT'] && strpos($_SERVER['HTTP_USER_AGENT'], 'Mobile') === false) { ?>
                         <div class="col-xl-4">
+                            <!-- dexyop -->
                             <div class="openBets">
+                                <!-- Mobile -->
+                            <?php if (!empty($game_single['channel_id'])) { ?>
+                                <div class="betting-table lay-bt" style="position: relative;">
+                                    <p class="mrkname" id="liveMatchLink"> Live Match </p>
+                                </div>
+                                <div id="liveTvMatch"><iframe src="{{$game_single['channel_id'] ?? ''}}" height="200" width="300" title="Iframe Example"></iframe></div>
+                            <?php } ?>
                                 <div id="collapseSetting" class="collapse"><app-stakes>
                                         <div style="position: relative;">
                                             <div class="stakeDiv">
@@ -498,55 +532,27 @@
         }
     }, 2000)
 </script>
+<!-- <script>
+  document.getElementById('liveMatchLink').addEventListener('click', function() {
+
+    var liveTvMatchDiv = document.getElementById('liveTvMatch');
+    var channel_id = $("#channel_id").val();
+
+    if (liveTvMatchDiv.style.display === 'none' || liveTvMatchDiv.style.display === '') {
+      var iframe = document.createElement('iframe');
+      iframe.src = channel_id;
+      // iframe.src = "https://allinonereborn.in/web/ptv.html";
+      // iframe.src = "https://tveboxlive.blogspot.com/?m=1&autoplay=1";
+      // iframe.src = "https://allinone-tataplay-web-one.vercel.app/player.html?channel=24";
+      liveTvMatchDiv.innerHTML = ''; // Clear any previous content
+      liveTvMatchDiv.appendChild(iframe);
+      liveTvMatchDiv.style.display = 'block'; // Show the div
+      liveTvMatchDiv.style.height = '215px'; // Show the div
+      iframe.style.height = '100%'; // Show the div
+      iframe.style.width = '100%'; // Show the div
+    } else {
+      liveTvMatchDiv.style.display = 'block'; // Hide the div
+    }
+  });
+</script> -->
 @endsection
-
-
-<!-- <div class="col-md-12 px-0">
-                                                <app-guest-bet-slip>
-                                                    <div class="bettingTable back">
-                                                        <div class="row justify-content-end py-1">
-                                                            <div class="col-md-8">
-                                                                <div class="row">
-                                                                    <div class="col-md-2 px-0 mbetting-table-none"><button class="btn btn-cancel">cacnel</button></div>
-                                                                    <div class="col-md-7 px-0">
-                                                                        <div class="row">
-                                                                            <div class="col-md-7 col-6 px-1">
-                                                                                <div class="input-group">
-                                                                                    <div class="input-group-prepend disabled"><span class="input-group-text"><i class="mdi mdi-minus"></i></span></div><input type="number" disabled="" min="1.01" max="999.99" class="form-control ng-untouched ng-pristine">
-                                                                                        <div class="input-group-append disabled"><span class="input-group-text"><i class="mdi mdi-plus"></i></span></div>
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="col-md-5 col-6 px-1"><input type="number" min="0" placeholder="Min: 000" class="form-control mbetting-table-none ng-untouched ng-pristine ng-valid">
-                                                                                <div class="input-group dbetting-table-none">
-                                                                                    <div class="input-group-prepend"><span class="input-group-text"><i class="mdi mdi-minus"></i></span></div><input type="number" min="0" placeholder="Min: 000" class="form-control ng-untouched ng-pristine ng-valid">
-                                                                                        <div class="input-group-append"><span class="input-group-text"><i class="mdi mdi-plus"></i></span></div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="col-md-3 mbetting-table-none"><button class="btn btn-betplace" disabled="">betplace</button></div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="row justify-content-center py-1">
-                                                            <ul class="stakesBtns mbetting-table-none">
-                                                                <li><a class="btn">100</a></li>
-                                                                <li><a class="btn">5000</a></li>
-                                                                <li><a class="btn">500</a></li>
-                                                                <li><a class="btn">25000</a></li>
-                                                                <li><a class="btn">50000</a></li>
-                                                                <li><a class="btn">100000</a></li>
-                                                                <li><a class="btn">500000</a></li>
-                                                                <li><a class="btn">1000000</a></li>
-                                                            </ul>
-                                                            <div class="col-12 dbetting-table-none">
-                                                                <div class="m_stakesBtns"><a class="btn">100</a><a class="btn">5000</a><a class="btn">500</a><a class="btn">25000</a><a class="btn">50000</a><a class="btn">100000</a><a class="btn">500000</a><a class="btn">1000000</a></div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="row">
-                                                            <div class="col-6 dbetting-table-none pr-xs-1"><button class="btn btn-cancel">cacnel</button></div>
-                                                            <div class="col-6 dbetting-table-none pl-xs-1"><button class="btn btn-betplace" disabled="">betplace</button></div>
-                                                        </div>
-                                                    </div>
-                                                </app-guest-bet-slip>
-                                            </div> -->
