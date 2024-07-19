@@ -115,16 +115,7 @@
                                         </div>
                                     </div>
 
-                                    @foreach($response['match_odds'] as $r)
-                                    <div class="row mx-0 odds_body">
-                                        <div class="col-md-5 col-7 px-0">
-                                            <p class="team-name team_name">{{ $r['team_name']}}</p>
-                                        </div>
-                                        <div class="col-md-7 col-5 px-0">
-                                            <div class="btn-group dOddsBox"><button class="back back2">- <span>-</span></button><button class="back back1">- <span>-</span></button><button class="back bet_text" data-back-lay="back" data-match-stake="{{$r['stake']}}" data-match-id="{{$r['id']}}" data-team-name="{{$r['team_name']}}"> @if($r['back_status']==1) {{ $r['back_value']}} @else - @endif </button><button class="lay bet_text" data-back-lay="lay" data-match-stake="{{$r['stake']}}" data-match-id="{{$r['id']}}" data-team-name="{{$r['team_name']}}"> @if($r['lay_status']==1) {{ $r['lay_value']}} @else - @endif</button><button class="lay lay1">- <span>-</span></button><button class="lay lay2">- <span>-</span></button></div>
-                                        </div>
-                                    </div>
-                                    @endforeach
+                                    <div id="matchoddclass"></div>
 
                                 </div>
                             </div><!----><!---->
@@ -156,16 +147,8 @@
                                         </div>
                                     </div>
 
-                                    @foreach($response['bookmaker'] as $r)
-                                    <div class="row mx-0 odds_body">
-                                        <div class="col-md-5 col-7 px-0">
-                                            <p class="team-name team_name">{{ $r['team_name']}}</p>
-                                        </div>
-                                        <div class="col-md-7 col-5 px-0">
-                                            <div class="btn-group dOddsBox"><button class="back back2">- <span>-</span></button><button class="back back1">- <span>-</span></button><button class="back bet_text" data-back-lay="back" data-match-stake="{{$r['stake']}}" data-match-id="{{$r['id']}}" data-team-name="{{$r['team_name']}}"> @if($r['back_status']==1) {{ $r['back_value']}} @else - @endif </button><button class="lay bet_text" data-back-lay="lay" data-match-stake="{{$r['stake']}}" data-match-id="{{$r['id']}}" data-team-name="{{$r['team_name']}}"> @if($r['lay_status']==1) {{ $r['lay_value']}} @else - @endif</button><button class="lay lay1">- <span>-</span></button><button class="lay lay2">- <span>-</span></button></div>
-                                        </div>
-                                    </div>
-                                    @endforeach
+                                    <div id="bookmaker"></div>
+
 
                                 </div>
                             </div><!----><!---->
@@ -197,16 +180,8 @@
                                         </div>
                                     </div>
 
-                                    @foreach($response['fancy'] as $r)
-                                    <div class="row mx-0 odds_body">
-                                        <div class="col-md-5 col-7 px-0">
-                                            <p class="team-name team_name">{{ $r['team_name']}}</p>
-                                        </div>
-                                        <div class="col-md-7 col-5 px-0">
-                                            <div class="btn-group dOddsBox"><button class="back back2">- <span>-</span></button><button class="back back1">- <span>-</span></button><button class="back bet_text" data-back-lay="back" data-match-stake="{{$r['stake']}}" data-match-id="{{$r['id']}}" data-team-name="{{$r['team_name']}}"> @if($r['back_status']==1) {{ $r['back_value']}} @else - @endif </button><button class="lay bet_text" data-back-lay="lay" data-match-stake="{{$r['stake']}}" data-match-id="{{$r['id']}}" data-team-name="{{$r['team_name']}}"> @if($r['lay_status']==1) {{ $r['lay_value']}} @else - @endif</button><button class="lay lay1">- <span>-</span></button><button class="lay lay2">- <span>-</span></button></div>
-                                        </div>
-                                    </div>
-                                    @endforeach
+                                    <div id="fancy"></div>
+
 
                                 </div>
                             </div><!----><!---->
@@ -238,16 +213,8 @@
                                         </div>
                                     </div>
 
-                                    @foreach($response['run_bhav'] as $r)
-                                    <div class="row mx-0 odds_body">
-                                        <div class="col-md-5 col-7 px-0">
-                                            <p class="team-name team_name">{{ $r['team_name']}}</p>
-                                        </div>
-                                        <div class="col-md-7 col-5 px-0">
-                                            <div class="btn-group dOddsBox"><button class="back back2">- <span>-</span></button><button class="back back1">- <span>-</span></button><button class="back bet_text" data-back-lay="back" data-match-stake="{{$r['stake']}}" data-match-id="{{$r['id']}}" data-team-name="{{$r['team_name']}}"> @if($r['back_status']==1) {{ $r['back_value']}} @else - @endif </button><button class="lay bet_text" data-back-lay="lay" data-match-stake="{{$r['stake']}}" data-match-id="{{$r['id']}}" data-team-name="{{$r['team_name']}}"> @if($r['lay_status']==1) {{ $r['lay_value']}} @else - @endif</button><button class="lay lay1">- <span>-</span></button><button class="lay lay2">- <span>-</span></button></div>
-                                        </div>
-                                    </div>
-                                    @endforeach
+                                    <div id="run_bhav"></div>
+
 
                                 </div>
                             </div><!----><!---->
@@ -279,16 +246,8 @@
                                         </div>
                                     </div>
 
-                                    @foreach($response['over_by_over_session_market'] as $r)
-                                    <div class="row mx-0 odds_body">
-                                        <div class="col-md-5 col-7 px-0">
-                                            <p class="team-name team_name">{{ $r['team_name']}}</p>
-                                        </div>
-                                        <div class="col-md-7 col-5 px-0">
-                                            <div class="btn-group dOddsBox"><button class="back back2">- <span>-</span></button><button class="back back1">- <span>-</span></button><button class="back bet_text" data-back-lay="back" data-match-stake="{{$r['stake']}}" data-match-id="{{$r['id']}}" data-team-name="{{$r['team_name']}}"> @if($r['back_status']==1) {{ $r['back_value']}} @else - @endif </button><button class="lay bet_text" data-back-lay="lay" data-match-stake="{{$r['stake']}}" data-match-id="{{$r['id']}}" data-team-name="{{$r['team_name']}}"> @if($r['lay_status']==1) {{ $r['lay_value']}} @else - @endif</button><button class="lay lay1">- <span>-</span></button><button class="lay lay2">- <span>-</span></button></div>
-                                        </div>
-                                    </div>
-                                    @endforeach
+                                    <div id="over_by_over_session_market"></div>
+
 
                                 </div>
                             </div><!----><!---->
@@ -320,16 +279,8 @@
                                         </div>
                                     </div>
 
-                                    @foreach($response['ball_by_ball_session_market'] as $r)
-                                    <div class="row mx-0 odds_body">
-                                        <div class="col-md-5 col-7 px-0">
-                                            <p class="team-name team_name">{{ $r['team_name']}}</p>
-                                        </div>
-                                        <div class="col-md-7 col-5 px-0">
-                                            <div class="btn-group dOddsBox"><button class="back back2">- <span>-</span></button><button class="back back1">- <span>-</span></button><button class="back bet_text" data-back-lay="back" data-match-stake="{{$r['stake']}}" data-match-id="{{$r['id']}}" data-team-name="{{$r['team_name']}}"> @if($r['back_status']==1) {{ $r['back_value']}} @else - @endif </button><button class="lay bet_text" data-back-lay="lay" data-match-stake="{{$r['stake']}}" data-match-id="{{$r['id']}}" data-team-name="{{$r['team_name']}}"> @if($r['lay_status']==1) {{ $r['lay_value']}} @else - @endif</button><button class="lay lay1">- <span>-</span></button><button class="lay lay2">- <span>-</span></button></div>
-                                        </div>
-                                    </div>
-                                    @endforeach
+                                    <div id="ball_by_ball_session_market"></div>
+
 
                                 </div>
                             </div><!----><!---->
@@ -361,16 +312,8 @@
                                         </div>
                                     </div>
 
-                                    @foreach($response['tied_match'] as $r)
-                                    <div class="row mx-0 odds_body">
-                                        <div class="col-md-5 col-7 px-0">
-                                            <p class="team-name team_name">{{ $r['team_name']}}</p>
-                                        </div>
-                                        <div class="col-md-7 col-5 px-0">
-                                            <div class="btn-group dOddsBox"><button class="back back2">- <span>-</span></button><button class="back back1">- <span>-</span></button><button class="back bet_text" data-back-lay="back" data-match-stake="{{$r['stake']}}" data-match-id="{{$r['id']}}" data-team-name="{{$r['team_name']}}"> @if($r['back_status']==1) {{ $r['back_value']}} @else - @endif </button><button class="lay bet_text" data-back-lay="lay" data-match-stake="{{$r['stake']}}" data-match-id="{{$r['id']}}" data-team-name="{{$r['team_name']}}"> @if($r['lay_status']==1) {{ $r['lay_value']}} @else - @endif</button><button class="lay lay1">- <span>-</span></button><button class="lay lay2">- <span>-</span></button></div>
-                                        </div>
-                                    </div>
-                                    @endforeach
+                                    <div id="tied_match"></div>
+
 
                                 </div>
                             </div><!----><!---->
@@ -385,12 +328,12 @@
                             <!-- dexyop -->
                             <div class="openBets">
                                 <!-- Mobile -->
-                            <?php if (!empty($game_single['channel_id'])) { ?>
-                                <div class="betting-table lay-bt" style="position: relative;">
-                                    <p class="mrkname" id="liveMatchLink"> Live Match </p>
-                                </div>
-                                <div id="liveTvMatch"><iframe src="{{$game_single['channel_id'] ?? ''}}" height="200" width="300" title="Iframe Example"></iframe></div>
-                            <?php } ?>
+                                <?php if (!empty($game_single['channel_id'])) { ?>
+                                    <div class="betting-table lay-bt" style="position: relative;">
+                                        <p class="mrkname" id="liveMatchLink"> Live Match </p>
+                                    </div>
+                                    <div id="liveTvMatch"><iframe src="{{$game_single['channel_id'] ?? ''}}" height="200" width="300" title="Iframe Example"></iframe></div>
+                                <?php } ?>
                                 <div id="collapseSetting" class="collapse"><app-stakes>
                                         <div style="position: relative;">
                                             <div class="stakeDiv">
@@ -477,7 +420,7 @@
     @if(empty(Session::get('myBets')))
     $(".show_bet").hide();
     @endif
-    $(".bet_text").click(function() {
+    $(document).on('click', '.bet_text', function() {
         $(".show_bet").show();
 
         // $elem = $(this).parent("div");
@@ -555,4 +498,221 @@
     }
   });
 </script> -->
+
+<script>
+    $(document).ready(function() {
+        function loadCricketDetails() {
+            var game_id = "{{ $game_id }}"; // Replace with your actual game ID or pass it dynamically
+
+            $.ajax({
+                url: game_id, // Update with your actual route
+                method: 'GET',
+                success: function(data) {
+                    console.log(data);
+
+                    var matchOddsHtml = '';
+                    $.each(data.response.match_odds, function(index, r) {
+                        //matchOddsHtml
+                        matchOddsHtml += `
+        <div class="row mx-0 odds_body">
+          <div class="col-md-5 col-7 px-0">
+            <p class="team-name team_name">${r.team_name}</p>
+          </div>
+          <div class="col-md-7 col-5 px-0">
+            <div class="btn-group dOddsBox">
+              <button class="back back2">- <span>-</span></button>
+              <button class="back back1">- <span>-</span></button>
+              <button class="back bet_text" data-back-lay="back" data-match-stake="${r.stake}" data-match-id="${r.id}" data-team-name="${r.team_name}">${r.back_status == 1 ? r.back_value : '-'}</button>
+              <button class="lay bet_text" data-back-lay="lay" data-match-stake="${r.stake}" data-match-id="${r.id}" data-team-name="${r.team_name}">${r.lay_status == 1 ? r.lay_value : '-'}</button>
+              <button class="lay lay1">- <span>-</span></button>
+              <button class="lay lay2">- <span>-</span></button>
+            </div>
+          </div>
+        </div>
+      `;
+                    });
+                    // $('#matchoddclass').empty(); // Update with your actual container class
+                    $('#matchoddclass').html(matchOddsHtml); // Update with your actual container class
+
+                    var bookmaker = '';
+                    $.each(data.response.bookmaker, function(index, r) {
+                        //matchOddsHtml
+                        bookmaker += `
+        <div class="row mx-0 odds_body">
+          <div class="col-md-5 col-7 px-0">
+            <p class="team-name team_name">${r.team_name}</p>
+          </div>
+          <div class="col-md-7 col-5 px-0">
+            <div class="btn-group dOddsBox">
+              <button class="back back2">- <span>-</span></button>
+              <button class="back back1">- <span>-</span></button>
+              <button class="back bet_text" data-back-lay="back" data-match-stake="${r.stake}" data-match-id="${r.id}" data-team-name="${r.team_name}">${r.back_status == 1 ? r.back_value : '-'}</button>
+              <button class="lay bet_text" data-back-lay="lay" data-match-stake="${r.stake}" data-match-id="${r.id}" data-team-name="${r.team_name}">${r.lay_status == 1 ? r.lay_value : '-'}</button>
+              <button class="lay lay1">- <span>-</span></button>
+              <button class="lay lay2">- <span>-</span></button>
+            </div>
+          </div>
+        </div>
+      `;
+                    });
+                    $('#bookmaker').html(bookmaker); // Update with your actual container class
+
+                    var fancy = '';
+                    $.each(data.response.fancy, function(index, r) {
+                        //matchOddsHtml
+                        fancy += `
+        <div class="row mx-0 odds_body">
+          <div class="col-md-5 col-7 px-0">
+            <p class="team-name team_name">${r.team_name}</p>
+          </div>
+          <div class="col-md-7 col-5 px-0">
+            <div class="btn-group dOddsBox">
+              <button class="back back2">- <span>-</span></button>
+              <button class="back back1">- <span>-</span></button>
+              <button class="back bet_text" data-back-lay="back" data-match-stake="${r.stake}" data-match-id="${r.id}" data-team-name="${r.team_name}">${r.back_status == 1 ? r.back_value : '-'}</button>
+              <button class="lay bet_text" data-back-lay="lay" data-match-stake="${r.stake}" data-match-id="${r.id}" data-team-name="${r.team_name}">${r.lay_status == 1 ? r.lay_value : '-'}</button>
+              <button class="lay lay1">- <span>-</span></button>
+              <button class="lay lay2">- <span>-</span></button>
+            </div>
+          </div>
+        </div>
+      `;
+                    });
+                    $('#fancy').html(fancy); // Update with your actual container class
+                    var ball_by_ball_session_market = '';
+                    $.each(data.response.ball_by_ball_session_market, function(index, r) {
+                        //matchOddsHtml
+                        ball_by_ball_session_market += `
+        <div class="row mx-0 odds_body">
+          <div class="col-md-5 col-7 px-0">
+            <p class="team-name team_name">${r.team_name}</p>
+          </div>
+          <div class="col-md-7 col-5 px-0">
+            <div class="btn-group dOddsBox">
+              <button class="back back2">- <span>-</span></button>
+              <button class="back back1">- <span>-</span></button>
+              <button class="back bet_text" data-back-lay="back" data-match-stake="${r.stake}" data-match-id="${r.id}" data-team-name="${r.team_name}">${r.back_status == 1 ? r.back_value : '-'}</button>
+              <button class="lay bet_text" data-back-lay="lay" data-match-stake="${r.stake}" data-match-id="${r.id}" data-team-name="${r.team_name}">${r.lay_status == 1 ? r.lay_value : '-'}</button>
+              <button class="lay lay1">- <span>-</span></button>
+              <button class="lay lay2">- <span>-</span></button>
+            </div>
+          </div>
+        </div>
+      `;
+                    });
+                    $('#ball_by_ball_session_market').html(ball_by_ball_session_market); // Update with your actual container class
+
+                    var over_by_over_session_market = '';
+                    $.each(data.response.over_by_over_session_market, function(index, r) {
+                        //matchOddsHtml
+                        over_by_over_session_market += `
+        <div class="row mx-0 odds_body">
+          <div class="col-md-5 col-7 px-0">
+            <p class="team-name team_name">${r.team_name}</p>
+          </div>
+          <div class="col-md-7 col-5 px-0">
+            <div class="btn-group dOddsBox">
+              <button class="back back2">- <span>-</span></button>
+              <button class="back back1">- <span>-</span></button>
+              <button class="back bet_text" data-back-lay="back" data-match-stake="${r.stake}" data-match-id="${r.id}" data-team-name="${r.team_name}">${r.back_status == 1 ? r.back_value : '-'}</button>
+              <button class="lay bet_text" data-back-lay="lay" data-match-stake="${r.stake}" data-match-id="${r.id}" data-team-name="${r.team_name}">${r.lay_status == 1 ? r.lay_value : '-'}</button>
+              <button class="lay lay1">- <span>-</span></button>
+              <button class="lay lay2">- <span>-</span></button>
+            </div>
+          </div>
+        </div>
+      `;
+                    });
+                    $('#over_by_over_session_market').html(over_by_over_session_market); // Update with your actual container class
+
+
+                    var run_bhav = '';
+                    $.each(data.response.run_bhav, function(index, r) {
+                        //matchOddsHtml
+                        run_bhav += `
+        <div class="row mx-0 odds_body">
+          <div class="col-md-5 col-7 px-0">
+            <p class="team-name team_name">${r.team_name}</p>
+          </div>
+          <div class="col-md-7 col-5 px-0">
+            <div class="btn-group dOddsBox">
+              <button class="back back2">- <span>-</span></button>
+              <button class="back back1">- <span>-</span></button>
+              <button class="back bet_text" data-back-lay="back" data-match-stake="${r.stake}" data-match-id="${r.id}" data-team-name="${r.team_name}">${r.back_status == 1 ? r.back_value : '-'}</button>
+              <button class="lay bet_text" data-back-lay="lay" data-match-stake="${r.stake}" data-match-id="${r.id}" data-team-name="${r.team_name}">${r.lay_status == 1 ? r.lay_value : '-'}</button>
+              <button class="lay lay1">- <span>-</span></button>
+              <button class="lay lay2">- <span>-</span></button>
+            </div>
+          </div>
+        </div>
+      `;
+                    });
+                    $('#over_by_over_session_market').html(run_bhav); // Update with your actual container class
+
+
+
+                    var tied_match = '';
+                    $.each(data.response.tied_match, function(index, r) {
+                        //matchOddsHtml
+                        tied_match += `
+        <div class="row mx-0 odds_body">
+          <div class="col-md-5 col-7 px-0">
+            <p class="team-name team_name">${r.team_name}</p>
+          </div>
+          <div class="col-md-7 col-5 px-0">
+            <div class="btn-group dOddsBox">
+              <button class="back back2">- <span>-</span></button>
+              <button class="back back1">- <span>-</span></button>
+              <button class="back bet_text" data-back-lay="back" data-match-stake="${r.stake}" data-match-id="${r.id}" data-team-name="${r.team_name}">${r.back_status == 1 ? r.back_value : '-'}</button>
+              <button class="lay bet_text" data-back-lay="lay" data-match-stake="${r.stake}" data-match-id="${r.id}" data-team-name="${r.team_name}">${r.lay_status == 1 ? r.lay_value : '-'}</button>
+              <button class="lay lay1">- <span>-</span></button>
+              <button class="lay lay2">- <span>-</span></button>
+            </div>
+          </div>
+        </div>
+      `;
+                    });
+                    $('#tied_match').html(tied_match); // Update with your actual container class
+
+
+
+
+                    var to_win_the_toss = '';
+                    $.each(data.response.to_win_the_toss, function(index, r) {
+                        //matchOddsHtml
+                        to_win_the_toss += `
+        <div class="row mx-0 odds_body">
+          <div class="col-md-5 col-7 px-0">
+            <p class="team-name team_name">${r.team_name}</p>
+          </div>
+          <div class="col-md-7 col-5 px-0">
+            <div class="btn-group dOddsBox">
+              <button class="back back2">- <span>-</span></button>
+              <button class="back back1">- <span>-</span></button>
+              <button class="back bet_text" data-back-lay="back" data-match-stake="${r.stake}" data-match-id="${r.id}" data-team-name="${r.team_name}">${r.back_status == 1 ? r.back_value : '-'}</button>
+              <button class="lay bet_text" data-back-lay="lay" data-match-stake="${r.stake}" data-match-id="${r.id}" data-team-name="${r.team_name}">${r.lay_status == 1 ? r.lay_value : '-'}</button>
+              <button class="lay lay1">- <span>-</span></button>
+              <button class="lay lay2">- <span>-</span></button>
+            </div>
+          </div>
+        </div>
+      `;
+                    });
+                    $('#to_win_the_toss').html(to_win_the_toss); // Update with your actual container class
+
+
+                },
+                error: function(xhr, status, error) {
+                    console.error('Error fetching cricket details:', error);
+                }
+            });
+        }
+
+        // Load cricket details every 5 seconds
+        setInterval(loadCricketDetails, 5000);
+
+        // // Initial load
+        loadCricketDetails();
+    });
+</script>
 @endsection

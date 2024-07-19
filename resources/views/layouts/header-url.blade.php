@@ -1,4 +1,4 @@
-  <title>LaserClub</title>
+  <title>SILVER</title>
   <!-- End fonts -->
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 

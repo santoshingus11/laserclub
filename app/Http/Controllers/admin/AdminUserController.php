@@ -359,7 +359,7 @@ class AdminUserController extends Controller
             }
             if($request->credit_limit != null){
                 $balance =[
-                    'credit_old_value'=> '0',
+                    'credit_old_value'=> $oldCredit,
                     'credit_new_value'=>$request->credit_limit,
                     'credit_from' => $creditfrom,
                     'credit_to'=> $newAdminId,

@@ -10,8 +10,8 @@ use App\Http\Controllers\Api\CommandController;
 |--------------------------------------------------------------------------
 |
 | Here is where you can register API routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "api" middleware group. Make something great!
+| routes are loaded by the RouteServiceProvider within a group which
+| is assigned the "api" middleware group. Enjoy building your API!
 |
 */
 
@@ -20,4 +20,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::post('/commands',[CommandController::class,'index']);
+Route::get('/all_games_bet_count_and_data',[CommandController::class,'all_games_bet_count_and_data']);
+Route::get('/all_games_bet_count',[CommandController::class,'all_games_bet_count']);
+Route::get('/all_games_bet/{game}/{matchid}',[CommandController::class,'all_games_bet']);
 Route::get('/profit_loss/{id}/{game_id}/{win_loss}',[CommandController::class,'profit_loss']);
+Route::get('/all_games_bet_reject/{id}/{game}',[CommandController::class,'all_games_bet_reject']);
+Route::get('/all_games_bet_accept/{id}/{game}',[CommandController::class,'all_games_bet_accept']);

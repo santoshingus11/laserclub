@@ -13,7 +13,11 @@ use App\Models\SiteNotification;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
-use App\Models\Balance;
+use App\Models\CricketPlaceBet;
+use App\Models\FootballPlaceBet;
+use App\Models\GreyhoundRacingPlaceBet;
+use App\Models\HorseRacingPlaceBet;
+use App\Models\TennisPlaceBet;
 class QueryHelper
 {
     public static function total_balanceup($id,$role_id)
@@ -49,15 +53,19 @@ class QueryHelper
       //   }else{
       //       $adminids=Admin::where('admin_id',$id)->where('role_id',$role_id+1)->pluck('id')->toArray();
       //   }
-       
-        $date=date('Y-m-d');
-        $amount=BetHistory::where('client_id',$id)->sum('bet_placed');
-         if(!empty($amount)){
-         $data = $amount;      
-         }else{
-         $data = '0.00';
-         }
-         return $data;
+      $deposit = BankingHistory::where('parent_id',Auth::guard('agent')->user()->id)->where('type','D')->sum('amount');
+      $withdraw = BankingHistory::where('parent_id',Auth::guard('agent')->user()->id)->where('type','W')->sum('amount');
+      
+     
+      return $deposit - $withdraw;
+      //   $date=date('Y-m-d');
+      //   $amount=BetHistory::where('client_id',$id)->sum('bet_placed');
+      //    if(!empty($amount)){
+      //    $data = $amount;      
+      //    }else{
+      //    $data = '0.00';
+      //    }
+      //    return $data;
        
     }  
 
@@ -70,13 +78,24 @@ class QueryHelper
        // dd(DB::getQueryLog());
 
         if(!empty($amount)){
-            $data = $amount->balance;      
+            $data = $amount->credit;      
             }else{
             $data = '0.00';
             }
             return $data;
 
        
+    }  
+    public static function total_bets($id)
+    {
+       
+      $GreyhoundRacingPlaceBet = GreyhoundRacingPlaceBet::where('user_id',$id)->where('bet_result',Null)->sum('bet_stake');
+      $HorseRacingPlaceBet = HorseRacingPlaceBet::where('user_id',$id)->where('bet_result',Null)->sum('bet_stake');
+      $TennisPlaceBet = TennisPlaceBet::where('user_id',$id)->where('bet_result',Null)->sum('bet_stake');
+      $FootballPlaceBet = FootballPlaceBet::where('user_id',$id)->where('bet_result',Null)->sum('bet_stake');
+      $CricketPlaceBet = CricketPlaceBet::where('user_id',$id)->where('bet_result',Null)->sum('bet_stake');
+
+       return $CricketPlaceBet + $FootballPlaceBet + $TennisPlaceBet + $HorseRacingPlaceBet + $GreyhoundRacingPlaceBet;
     }  
 
     public static function admin_access_id()
@@ -283,26 +302,32 @@ class QueryHelper
      }
 
      public static function adminids(){
-    $data=Admin::where('user_access','!=',1);
+    // $data = Admin::where('role_id',Auth::guard('agent')->user()->role_id+1);
+    
+      $data=Admin::where('user_access','!=',1);
+      
       if(Auth::guard('agent')->user()->role_id<=2){
+         
          $data=$data->where('role_id',Auth::guard('agent')->user()->role_id+1);
+
       }else{
          $data=$data->whereIn('role_id',[Auth::guard('agent')->user()->role_id+1,5]);
       }
-      
+     
         if(Auth::guard('agent')->user()->user_access==1)
         {
         
          $checkadmin=Admin::where('id',Auth::guard('agent')->user()->admin_id)->first();
+         dd($checkadmin);
          $data=$data->where('admin_id',$checkadmin->id);
         }else{
 
-      
+       
          $data=$data->where('admin_id',Auth::guard('agent')->user()->id);
         }  
-
-        $alldata = $data->pluck('id')->toArray();
         
+        $alldata = $data->pluck('id')->toArray();
+
         return $alldata;
 
      }
@@ -322,7 +347,7 @@ class QueryHelper
       return $data->description ?? '';
    }
 
-   public static function getIpDetails()
+   public function getIpDetails()
       {
                   $ipAddress = request()->ip(); 
                   $response = Http::get("https://ipinfo.io/{$ipAddress}?token=d9c9f9e72daec3");
@@ -378,13 +403,7 @@ class QueryHelper
             return $hyperhypermaster_id ?? [];
    
          }
-         
    
        
       }
-      
-       public static function getAdminBalance($id){
-         return Balance::where('admin_id',$id)->first();
-      }
-      
 }

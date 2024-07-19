@@ -347,14 +347,14 @@ Route::group(['prefix' => 'admin'], function () {
 
     Route::get('account-statement-download',[AgentManagementController::class,'account_statement_download'])->name('account-statement-download');
 
-
     Route::get('message-report',[AdminController::class,'message_report'])->name('message-report');
     Route::get('client_account_statement',[AdminController::class,'client_account_statement'])->name('client-account-statement');
     // Route::post('password-change/{id}',[AdminController::class,'password_change'])->name('admin-password-change');
     Route::get('smdemo1-agent-listing-demoag5',[AdminController::class,'demo_2'])->name('smdemo1-agent-listing-demoag5');
     Route::get('agent-listing2',[AdminController::class,'demo_1'])->name('agent-listing2');
     Route::any('agent-listing',[AdminController::class,'agent_listing'])->name('agent-listing');
-     Route::get('agent-listing-demoag5/{id}',[AdminController::class,'demo_4'])->name('agent-listing-demoag5');
+    Route::get('agent-listing-demoag5/{id}',[AdminController::class,'demo_4'])->name('agent-listing-demoag5');
+    Route::get('agent-listing-demoag55/{id}',[AdminController::class,'demo_44'])->name('agent-listing-demoag55');
     Route::get('create-new-user',[AdminController::class,'new_user'])->name('create-new-user');
     Route::get('race20',[AdminController::class,'race20'])->name('admin-race-20');
     Route::get('new-agent',[AdminController::class,'new_agent'])->name('new-agent');

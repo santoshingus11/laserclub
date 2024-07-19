@@ -276,7 +276,7 @@
                             </div>
                         </div>
 
-                       <div class="btn_Download d-inline-flex text-nowrap">
+                        <div class="btn_Download d-inline-flex text-nowrap">
                             <button type="button" id="downloadCSV"
                                 class="btn btn-primary Refresh btn-icon-text mb-2 mb-md-0 mx-2">
                                 Download CSV

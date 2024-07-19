@@ -1,13 +1,12 @@
   <title>Lordsexch | Login | Lordsexch | Home</title>
   <link rel="icon" type="image/png" href="{{asset('assets/images/favicon.png')}}" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" integrity="sha512-vKMx8UnXk60zUwyUnUPM3HbQo8QfmNx7+ltw8Pm5zLusl1XIfwcxo8DbWCqMGKaWeNxWA8yrx5v3SaVpMvR3CA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script>
     const link = document.createElement('link');
     link.rel = 'stylesheet';
     link.href = '{{ asset('frontend/assets/css/style.css') }}';
     document.head.appendChild(link);
 </script>
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
    {{-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" integrity="sha384-GLhlTQ8iK7l5i6Tbz5W5l3DbYI99ZXnMOBiEYgHnyJ9vFAK/iWddD9Q5Iw2Gg" crossorigin="anonymous"> --}}
   <style>
     .fullpage-loader {
