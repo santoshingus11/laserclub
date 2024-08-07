@@ -65,6 +65,7 @@
                         </div>
                         <div>
 
+                          @if($response)
                           @foreach($response as $r)
                            @php 
                             $dateTime = new DateTime($r['datetimeGMT'], new DateTimeZone('GMT'));
@@ -109,6 +110,7 @@
                               </div>
                             </app-guest-sport-list-element></div>
                           @endforeach
+                          @endif
 
 
                         </div>

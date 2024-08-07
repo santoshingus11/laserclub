@@ -22,6 +22,68 @@
         border: none;
     }
 </style>
+
+<style>
+    .scoreboard {
+        background: black;
+        padding: 20px;
+        /* Dark blue background */
+        color: white;
+        padding: 10px;
+        border-radius: 5px;
+        margin-top: 20px;
+    }
+
+    .background {
+        background-image: url('{{url("/public/scorecard-bg.png")}}');
+        /* Replace with your background image URL */
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+        padding: 20px;
+        border-radius: 5px;
+    }
+
+    .match-info,
+    .score-info,
+    .target-info,
+    .commentary-info {
+        background-color: rgba(0, 0, 0, 0.5);
+        /* Semi-transparent black */
+        padding: 10px;
+        margin-top: 5px;
+        border-radius: 5px;
+    }
+
+    .badge-custom {
+        padding: 10px;
+        font-size: 1.2rem;
+    }
+
+    .badge-4 {
+        background-color: blue;
+    }
+
+    .badge-1 {
+        background-color: green;
+    }
+
+    .badge-0 {
+        background-color: grey;
+    }
+
+    .content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .commentary-info {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+</style>
 @endsection
 @section('content')
 
@@ -37,7 +99,32 @@
             <app-sport-list>
                 <div class="row">
                     <div class="col-xl-8 px-lg-1">
+                    <?php if (!empty($game_single['channel_id'])) { ?>
+                                <div class="scoreboard">
+                                    <div class="background">
+                                        <div class="content">
+                                            <h2><span> {{$game_single['game_title'] ?? ""}} </span><span>{{$game_single['datetimeGMT'] ?? ""}}
+                                                </span>
+                                            </h2>
+                                        </div>
+                                        <div class="commentary-info">
+                                            <div>Target:</div>
+                                            <div id="target">
 
+                                            </div>
+                                        </div>
+                                        <div class="commentary-info">
+                                            <div>Score board :</div>
+                                            <div id="nowscore"></div>
+                                        </div>
+                                        <div class="commentary-info">
+                                            <div>Ball By Ball Score : <span id="playing_team"></span></div>
+                                            <div id="score_data"></div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            <?php } ?>
                         <?php if ($_SERVER['HTTP_USER_AGENT'] && strpos($_SERVER['HTTP_USER_AGENT'], 'Mobile') !== false) { ?>
                             <!-- Mobile -->
                             <?php if (!empty($game_single['channel_id'])) { ?>
@@ -46,6 +133,7 @@
                                 </div>
                                 <div id="liveTvMatch"><iframe src="{{$game_single['channel_id'] ?? ''}}" height="200" width="300" title="Iframe Example"></iframe></div>
                             <?php } ?>
+                           
                             <app-bet-slip class="show_bet mb-4">
                                 <form action="{{route('cricket-bet-place')}}" method="POST">
                                     @csrf
@@ -706,6 +794,51 @@
                     console.error('Error fetching cricket details:', error);
                 }
             });
+
+            $.ajax({
+                url: game_id, // Update with your actual route
+                method: 'GET',
+                success: function(data) {
+                    console.log(data);
+                    var target = data.score.cricket_detail.target;
+                    var teamNameA = data.score.cricket_detail.team_name_a;
+
+                    var displayText = target === null || target === undefined ? 'Yet To Bat' : target;
+
+                    var target = '';
+                    target = `
+                <span class="badge badge-custom badge-0">${teamNameA} : ${displayText}</span>
+            `;
+
+                    $('#target').html(target);
+
+                    var nowscore = '';
+                    nowscore = `
+              <span class="badge badge-custom badge-1"> Score </span>  <span class="badge badge-custom badge-0">${data.score.cricket_detail.play_score} / ${data.score.cricket_detail.play_wicket}</span> <span class="badge badge-custom badge-1"> Over Completed </span> <span class="badge badge-custom badge-0"> ${data.score.cricket_detail.play_over} </span>
+            `;
+
+                    $('#nowscore').html(nowscore);
+
+                    var score = '';
+                    var playing_team = '';
+                    $.each(data.score.cricket, function(index, r) {
+
+                        score += `
+                    <span class="badge badge-custom badge-0">${r.score}</span>
+            `;
+                        playing_team = `
+                    <span class="badge badge-custom badge-1">${r.team_name}</span>
+            `;
+                    });
+                    $('#score_data').html(score);
+                    $('#playing_team').html(playing_team);
+
+                },
+                error: function(xhr, status, error) {
+                    console.error('Error fetching cricket details:', error);
+                }
+            });
+
         }
 
         // Load cricket details every 5 seconds
@@ -716,7 +849,7 @@
     });
 </script>
 <script>
-      function updateProfit(amnt) {
+    function updateProfit(amnt) {
         var odds = parseFloat($("#bet_input_stake").val()) || 1;
         var profit = amnt * odds;
         $(".profit_div").text(profit.toFixed(2)); // Format profit to 2 decimal places
@@ -724,7 +857,7 @@
         $('.betplace-btn').prop("disabled", false);
     }
     $("#add_input").on('input', function() {
-     
+
         var amnt = parseFloat($(this).val()) || 0;
         updateProfit(amnt);
     });

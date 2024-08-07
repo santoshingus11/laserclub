@@ -37,7 +37,79 @@
             <app-sport-list>
                 <div class="row">
                     <div class="col-xl-8 px-lg-1">
+                    <style>
+              .container {
+                background-color: #2a2a3c;
+                padding: 20px;
+                border-radius: 10px;
+                text-align: center;
+                color: white;
+              }
 
+              .header {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin-bottom: 20px;
+              }
+
+              .header .title {
+                font-size: 18px;
+              }
+
+              .header .date {
+                font-size: 14px;
+                color: #bfbfbf;
+              }
+
+              .score {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+              }
+
+              .team {
+                display: flex;
+                align-items: center;
+              }
+
+              .team img {
+                width: 30px;
+                height: 30px;
+                margin-right: 10px;
+              }
+
+              .team .name {
+                font-size: 16px;
+              }
+
+              .goal {
+                font-size: 14px;
+                color: #bfbfbf;
+              }
+
+              .result {
+                font-size: 24px;
+                font-weight: bold;
+              }
+
+              .half-time {
+                font-size: 12px;
+                color: #bfbfbf;
+                margin-top: 10px;
+              }
+            </style>
+            <?php if (!empty($game_single['channel_id'])) { ?>
+              <div class="container">
+                <div class="header">
+                  <div class="title">{{$game_single['game_title'] ?? ""}}</div>
+                  <div class="date">{{$game_single['run_date_time'] ?? ""}}</div>
+                </div>
+               <hr>
+                <div id="scoreboard"></div>
+                <div id="timer" style="text-align:center;font-weight: bold;font-size: 25px;"></div>
+              </div>
+            <?php } ?>
                         <?php if ($_SERVER['HTTP_USER_AGENT'] && strpos($_SERVER['HTTP_USER_AGENT'], 'Mobile') !== false) { ?>
                             <!-- Mobile -->
                             <?php if (!empty($game_single['channel_id'])) { ?>
@@ -572,6 +644,33 @@
                     console.error('Error fetching cricket details:', error);
                 }
             });
+
+            $.ajax({
+        url: game_id, // Update with your actual route
+        method: 'GET',
+        success: function(data) {
+
+          console.log(data);
+          var score = `
+
+          <div class="score">
+                  <div class="team">
+                   <img src="https://newsilver.art/public/highlight.b1ac6c3e.png" alt="Al Mokawloon">
+                    <div class="name">${data.score.football.team_name_a}</div>
+                  </div>
+                  <div class="result"><span></span> ${data.score.football.score_a} : ${data.score.football.score_b}</div>
+                  <div class="team">
+                  <img src="https://newsilver.art/public/highlight.b1ac6c3e.png" alt="Al Mokawloon">
+                    <div class="name">${data.score.football.team_name_b}</div>
+                   </div>
+                </div>
+          `;
+          $('#scoreboard').html(score);
+        },
+        error: function(xhr, status, error) {
+          console.error('Error fetching cricket details:', error);
+        }
+      });
         }
 
         // Load cricket details every 5 seconds
@@ -594,5 +693,55 @@
         var amnt = parseFloat($(this).val()) || 0;
         updateProfit(amnt);
     });
+</script>
+<script>
+  $(document).ready(function() {
+    var game_id = "{{ $game_id }}";
+    $.ajax({
+      url: game_id, // Update with your actual route
+      method: 'GET',
+      success: function(data) {
+        // Example hardcoded times
+        // var end = "2024-07-31T12:52:00";
+
+        var end = data.score.football.end_time; // Uncomment when using dynamic data
+        // var start = "2024-07-31T10:52:00";
+        var start = data.score.football.start_time; // Uncomment when using dynamic data
+
+        // Set the start and end times
+        const startTime = new Date(start).getTime();
+        const endTime = new Date(end).getTime(); // For example, a 2-hour match
+
+        // Function to update the timer
+        function updateTimer() {
+          const now = new Date().getTime();
+          const timerElement = document.getElementById('timer');
+
+          if (now < startTime) {
+            timerElement.innerHTML = "Match hasn't started yet.";
+          } else if (now >= startTime && now <= endTime) {
+            const elapsedTime = now - startTime;
+            const totalSeconds = Math.floor(elapsedTime / 1000);
+            const hours = Math.floor(totalSeconds / 3600);
+            const minutes = Math.floor((totalSeconds % 3600) / 60);
+            const seconds = totalSeconds % 60;
+
+            timerElement.innerHTML = `${hours}:${minutes}:${seconds}`;
+          } else {
+            timerElement.innerHTML = "Match has ended.";
+            clearInterval(timerInterval); // Stop the timer
+          }
+        }
+
+        // Update the timer every second
+        const timerInterval = setInterval(updateTimer, 1000);
+
+      },
+      error: function(xhr, status, error) {
+        console.error('Error fetching cricket details:', error);
+      }
+    });
+
+  });
 </script>
 @endsection
