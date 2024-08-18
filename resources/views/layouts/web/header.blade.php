@@ -78,6 +78,10 @@
                                             <a href="{{route('account_statement_')}}" class="dropdown-item notify-item"> account statement </a>
                                             <a href="{{route('bet_history_client')}}" class="dropdown-item notify-item"> Bets History </a>
                                             <a href="{{route('profit_loss_')}}" class="dropdown-item notify-item"> profit/loss </a>
+                                           
+                                            <a class="dropdown-item notify-item" href="{{route('withdraw.create')}}"> Withdraw </a>
+                                            <a class="dropdown-item notify-item" href="{{route('deposit.create')}}"> Deposit </a>
+
                                             <a href="{{route('change_pass')}}" class="dropdown-item notify-item"> Change Password </a>
                                             <a href="javascript:void(0)" class="dropdown-item notify-item"> Rules </a><a href="{{route('client_logout')}}" class="dropdown-item notify-item logout-btn"> Logout <i class="fe-log-out"></i></a>
                                         </div>
