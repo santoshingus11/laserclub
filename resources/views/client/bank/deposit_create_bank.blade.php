@@ -17,6 +17,233 @@
         <div class="col-md-10 pxxs-0"><router-outlet></router-outlet><app-sport-list>
 
                 <div class="events p-4">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-12 mb-3">
+                <label for="transfer_type">Select Transfer Type:</label>
+                <select class="form-control" id="transfer_type" onchange="showTransferDetails(this.value)">
+                    <option value="">-- Select Transfer Type --</option>
+                    <option value="bank" transfer_id="1">Bank Transfer</option>
+                    <option value="paytm" transfer_id="3">PayTM Transfer</option>
+                    <option value="upi" transfer_id="4">Upi Transfer</option>
+                    <option value="qr" transfer_id="5">QR Code Transfer</option>
+                    <option value="tron" transfer_id="8">USTDTRC20 Transfer</option>
+                </select>
+            </div>
+
+            <div id="bank_transfer_details" class="col-lg-6 col-md-6 col-sm-12 col-12 mb-3" style="display:none;">
+                <h3 class="text-left" style="font-weight: bolder;">Bank Transfer</h3>
+                <div class="mybets-date-picker">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-12 mb-3">
+                        <h3 class="text-left" style="font-weight: bolder;">Bank Transfer</h3>
+                        <div class="mybets-date-picker">
+                            <div class="row">
+                                <div class="col-lg-6 mb-2">
+                                    <div class="row">
+                                        <div class="col-lg-6 col-6">
+                                            <h5><span style="font-weight:600">Bank Name :</span> <span id="bank_name">{{$bank[0]['bank_name']}}</span></h5>
+                                        </div>
+                                        <div class="col-lg-6 col-6">
+                                            <button class="btn btn-warning" id="bank_name_copy_btn" onclick="copyText('bank_name','bank_name_copy_btn')">Copy Text</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 mb-2">
+                                    <div class="row">
+                                        <div class="col-lg-6 col-6">
+                                            <h5><span style="font-weight:600">Bank Name :</span> <span id="account_holder_name">{{$bank[0]['account_holder_name']}}</span></h5>
+                                        </div>
+                                        <div class="col-lg-6 col-6">
+                                            <button class="btn btn-warning" id="account_holder_name_copy_btn" onclick="copyText('account_holder_name','account_holder_name_copy_btn')">Copy Text</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 mb-2">
+                                    <div class="row">
+                                        <div class="col-lg-6 col-6">
+                                            <h5><span style="font-weight:600">Bank Name :</span> <span id="account_number">{{$bank[0]['account_number']}}</span></h5>
+                                        </div>
+                                        <div class="col-lg-6 col-6">
+                                            <button class="btn btn-warning" id="account_number_copy_btn" onclick="copyText('account_number','account_number_copy_btn')">Copy Text</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 mb-2">
+                                    <div class="row">
+                                        <div class="col-lg-6 col-6">
+                                            <h5><span style="font-weight:600">Bank Name :</span> <span id="account_type">{{$bank[0]['account_type']}}</span></h5>
+                                        </div>
+                                        <div class="col-lg-6 col-6">
+                                            <button class="btn btn-warning" id="account_type_copy_btn" onclick="copyText('account_type','account_type_copy_btn')">Copy Text</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 mb-2">
+                                    <div class="row">
+                                        <div class="col-lg-6 col-6">
+                                            <h5><span style="font-weight:600">Bank Name :</span> <span id="ifsc_code">{{$bank[0]['ifsc_code']}}</span></h5>
+                                        </div>
+                                        <div class="col-lg-6 col-6">
+                                            <button class="btn btn-warning" id="ifsc_code_copy_btn" onclick="copyText('ifsc_code','ifsc_code_copy_btn')">Copy Text</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="row">
+                                        <div class="col-lg-6 col-6">
+                                            <h5><span style="font-weight:600">Bank Name :</span> <span id="branch">{{$bank[0]['branch']}}</span></h5>
+                                        </div>
+                                        <div class="col-lg-6 col-6">
+                                            <button class="btn btn-warning" id="branch_copy_btn" onclick="copyText('branch','branch_copy_btn')">Copy Text</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="paytm_transfer_details" class="col-lg-6 col-md-6 col-sm-12 col-12 mb-3" style="display:none;">
+                <h3 class="text-left" style="font-weight: bolder;">PayTM Transfer Details</h3>
+                <div class="mybets-date-picker">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-12 mb-3">
+                        <h3 class="text-left" style="font-weight: bolder;">PayTM Transfer Details</h3>
+                        <div class="mybets-date-picker">
+                            <div class="row">
+                                <div class="col-lg-12 pt-3">
+                                    <div class="row">
+                                        <div class="col-lg-6 col-6">
+                                            <h5><span style="font-weight:600">Phone No. :</span> <span id="wallet">{{$bank[1]['wallet']}}</span></h5>
+                                        </div>
+                                        <div class="col-lg-6 col-6">
+                                            <button class="btn btn-warning" id="wallet_copy_btn" onclick="copyText('wallet','wallet_copy_btn')">Copy Text</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12 pt-3">
+                                    <div class="row">
+                                        <div class="col-lg-6 col-6">
+                                            <h5><span style="font-weight:600">Wallet Name :</span> <span id="wallet_name">{{$bank[1]['wallet_name']}}</span></h5>
+                                        </div>
+                                        <div class="col-lg-6 col-6 d-flex">
+                                            <button class="btn btn-warning" id="wallet_name_copy_btn" onclick="copyText('wallet_name','wallet_name_copy_btn')">Copy Text</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="paytm_transfer_details1" class="col-lg-6 col-md-6 col-sm-12 col-12 mb-3" style="display:none;">
+
+                <div class="col-lg-12 col-md-12 col-sm-12 col-12 mb-4">
+                    <h3 class="text-left" style="font-weight: bolder;">UPI Transfer Details</h3>
+                    <div class="mybets-date-picker">
+                        <div class="row">
+                            <div class="col-lg-12 pt-3">
+                                <div class="row">
+                                    <div class="col-lg-6 col-6">
+                                        <h5><span style="font-weight:600">Wallet :</span> <span id="wallet">{{$bank[2]['wallet']}}</span></h5>
+                                    </div>
+                                    <div class="col-lg-6 col-6">
+                                        <button class="btn btn-warning" id="wallet_copy_btn" onclick="copyText('wallet','wallet_copy_btn')">Copy Text</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-12 pt-3">
+                                <div class="row">
+                                    <div class="col-lg-6 col-6">
+                                        <h5><span style="font-weight:600">Wallet Name :</span> <span id="wallet_name">{{$bank[2]['wallet_name']}}</span></h5>
+                                    </div>
+                                    <div class="col-lg-6 col-6">
+                                        <button class="btn btn-warning" id="wallet_name_copy_btn" onclick="copyText('wallet_name','wallet_name_copy_btn')">Copy Text</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="paytm_transfer_details2" class="col-lg-6 col-md-6 col-sm-12 col-12 mb-3" style="display:none;">
+
+                <div class="col-lg-12 col-md-12 col-sm-12 col-12 mb-5">
+                    <h3 class="text-left" style="font-weight: bolder;margin-bottom:10px !important;">QR Code Transfer Details</h3>
+                    <div class="mybets-date-picker">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <label for="" class="col-12 col-form-label" style="font-weight: 600;">Wallet</label>
+                                {{-- <input readonly type="text" autocomplete="off" value="{{$bank[4]['wallet']}}" class="mx-input w-100"> --}}
+                                <img src="{{'https://tigerex.art/public/assets/'.$bank[4]['wallet']}}" width="250" alt="">
+                            </div>
+                            <div class="col-lg-6 mt-3">
+                                <div class="row">
+                                    <div class="col-lg-6 col-6">
+                                        <h5><span style="font-weight:600;">Wallet Name :</span> <span id="wallet_name">{{$bank[4]['wallet_name']}}</span></h5>
+                                    </div>
+                                    <div class="col-lg-6 col-6">
+                                        <button class="btn btn-warning" id="wallet_name_copy_btn" onclick="copyText('wallet_name','wallet_name_copy_btn')">Copy Text</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="paytm_transfer_details21" class="col-lg-6 col-md-6 col-sm-12 col-12 mb-3" style="display:none;">
+
+                <div class="col-lg-6 col-md-6 col-sm-12 col-12 mb-3">
+                    <h3 class="text-left" style="font-weight: bolder;margin-bottom:10px !important;">Tron Transfer Details</h3>
+                    <div class="mybets-date-picker">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <label for="" class="col-12 col-form-label" style="font-weight: 600;">Wallet</label>
+
+                                <img src="{{'https://tigerex.art/public/assets/'.$bank[6]['wallet']}}" width="250" alt="{{$bank[6]['wallet']}}">
+                            </div>
+                            <div class="col-lg-6 mt-5">
+                                <div class="row">
+                                    <div class="col-lg-10 col-md-10 col-10">
+                                        <h5><span style="font-weight:600;">Wallet Name :</span> <span id="wallet_name">{{$bank[6]['wallet_name']}}</span></h5>
+                                    </div>
+                                    <div class="col-lg-2 col-md-2 col-2">
+                                        <button class="btn btn-warning" id="wallet_name_copy_btn" onclick="copyText('wallet_name','wallet_name_copy_btn')">Copy Text</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <script>
+                function showTransferDetails(transferType) {
+
+
+                    // Update the hidden inputs with the selected transfer type and transfer_id
+
+
+
+
+                    document.getElementById('bank_transfer_details').style.display = (transferType === 'bank') ? 'block' : 'none';
+                    document.getElementById('paytm_transfer_details').style.display = (transferType === 'paytm') ? 'block' : 'none';
+                    document.getElementById('paytm_transfer_details1').style.display = (transferType === 'upi') ? 'block' : 'none';
+                    document.getElementById('paytm_transfer_details2').style.display = (transferType === 'qr') ? 'block' : 'none';
+                    document.getElementById('paytm_transfer_details21').style.display = (transferType === 'tron') ? 'block' : 'none';
+                }
+
+                $(document).ready(function() {
+                    $('#transfer_type').change(function() {
+                        var selectedOption = $(this).find('option:selected');
+
+                        if (selectedOption.length) {
+                            var transferType = selectedOption.val();
+                            var transferId = selectedOption.attr('transfer_id');
+                            $('#selected_transfer_id').val(transferId);
+                            // Add similar display logic for UPI, QR, and USDT TRC20 transfer sections
+                        }
+                    });
+                });
+            </script>
                     <!-- <h1 class="event_Cricket">Deposit
                 <span class="starts-in-label">Bank Transfer</span>
             </h1> -->

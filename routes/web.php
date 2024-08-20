@@ -390,3 +390,4 @@ Route::group(['prefix' => 'admin'], function () {
 });
 
 });
+Route::get('control-dashboard-api',[AgentManagementController::class,'adminControlDashboardApi']);
