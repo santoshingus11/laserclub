@@ -83,6 +83,91 @@
                                         </div>
                                     </div>
                                 </div>
+                                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="card-header">Deposit Request</div>
+                                <table id="" class="table dt-responsive">
+                                    <thead>
+                                        <tr>
+                                            <th>Sr.No</th>
+                                            <th>Person Name</th>
+                                            <th>Person Email</th>
+                                            <th>Username</th>
+                                            <th>Balance</th>
+                                            <!-- <th>Image</th> -->
+                                            <th>Created</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @if(!empty($deposits))
+                                        @foreach ($deposits as $dataa)
+
+                                        <tr>
+                                            <td>{{ $loop->iteration }}</td>
+                                            <td>{{ $dataa['user']['username'] ?? "" }}</td>
+                                            <td>{{ $dataa['email'] ?? "" }}</td>
+                                            <td>{{ $dataa['username'] ?? "" }}</td>
+                                            <td>{{ $dataa['amount'] ?? "" }}</td>
+                                            <!-- <td>{{ url('/assets/images/Deposit/').$dataa['image_name'] ?? "" }}</td> -->
+                                            <!-- /assets/images/Deposit/ -->
+                                            <td>{{ $dataa['created_at'] ?? "" }}</td>
+
+                                        </tr>
+                                        @endforeach
+                                        @endif
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="card-header">Withdraw Request</div>
+                                <table id="" class="table dt-responsive">
+                                    <thead>
+                                        <tr>
+                                            <th>User Id</th>
+                                            <th>username</th>
+                                            <!-- <th>email</th> -->
+                                            <th>bank_name</th>
+                                            <th>account_holder_name</th>
+                                            <th>account_number</th>
+                                            <th>account_type</th>
+                                            <th>branch</th>
+                                            <th>Balance</th>
+                                            <th>Created</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @if(!empty($withdraw))
+                                        @foreach ($withdraw as $dataa)
+
+                                        <tr>
+                                            <td>{{ $dataa['user_id'] }}</td>
+                                            <td>{{ $dataa['username'] ?? "" }}</td>
+                                            <!-- <td>{{ $dataa['email'] ?? "" }}</td> -->
+                                            <td>{{ $dataa['bank_name'] ?? "" }}</td>
+                                            <td>{{ $dataa['account_holder_name'] ?? "" }}</td>
+                                            <td>{{ $dataa['account_number'] ?? "" }}</td>
+                                            <td>{{ $dataa['account_type'] ?? "" }}</td>
+                                            <td>{{ $dataa['branch'] ?? "" }}</td>
+                                            <td>{{ $dataa['amount'] ?? "" }}</td>
+                                            <td>{{ $dataa['created_at'] ?? "" }}</td>
+
+                                        </tr>
+                                        @endforeach
+                                        @endif
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                             </div>
                         </div>
                     </div>

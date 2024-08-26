@@ -24,8 +24,9 @@ use App\Models\TennisPlaceBet;
 use App\Models\HorseRacingPlaceBet;
 use App\Models\GreyhoundRacingPlaceBet;
 use App\Models\CricketPlaceBet;
+use App\Models\Deposit;
 use App\Models\FootballPlaceBet;
-
+use App\Models\Withdraw;
 
 class ClientController extends Controller
 {
@@ -352,10 +353,18 @@ class ClientController extends Controller
     //     return view('client.account_statement');
     //     // return view('client.bet_history_client');
     // }
-       function account_statement()
+    public function account_statement()
     {
-        return view('account_statement');
+        // $bankingHistories = BankingHistory::where('user_id', Auth::guard('client')->user()->id)->orderBy('banking_history_id', 'desc')->get();
+        $deposits = Deposit::all();
+        $withdraw = Withdraw::all();
+
+        return view('account_statement', get_defined_vars());
     }
+    //    function account_statement()
+    // {
+    //     return view('account_statement');
+    // }
     function profile()
     {
         return view('profile');
