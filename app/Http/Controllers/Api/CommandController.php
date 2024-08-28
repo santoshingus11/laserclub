@@ -621,10 +621,13 @@ class CommandController extends Controller
         return response()->json('done');
     }
 
-    public function adminControlDashboardApi()
+  public function adminControlDashboardApi()
     {
         $pending_deposits = Deposit::where('status', 'pending')->get()->count();
         $pending_withdraw = Withdraw::where('status', 'pending')->get()->count();
+        $total_balancedown=QueryHelper::total_balancedown(4,4);
+        $up=QueryHelper::total_balanceup(4,4);
+        $total_balanceup = $up - $total_balancedown;
         return response()->json([
             'status' => 'success',
             'response' => get_defined_vars(),
